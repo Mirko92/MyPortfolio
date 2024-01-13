@@ -1,7 +1,7 @@
 import { MpSection } from "@/components/MpSection";
 
 export function MyExperiences() {
-  return <MpSection>
+  return <MpSection id="experiences">
     <h2>My Experiences</h2>
 
     <ul>
