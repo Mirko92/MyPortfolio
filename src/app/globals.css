@@ -42,28 +42,6 @@ body {
     );
 }
 
-
-
-
-
-.box .content .percent svg circle:nth-child(2) {
-  stroke: #555;
-  stroke-dasharray: 440;
-  stroke-dashoffset: calc(440 - (440 * var(--num)) / 100);
-  opacity: 0;
-  animation: fadeIn 1s linear forwards;
-  animation-delay: 2.5s;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .box .content .percent .dot {
   animation: animateDot 3s linear forwards;
 }
@@ -77,17 +55,6 @@ body {
   }
 }
 
-.box .content .percent .dot::before {
-  content: '';
-  position: absolute;
-  top: -7px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 14px;
-  background: #555;
-  border-radius: 50%;
-}
 
 .box .content .number {
   position: relative;

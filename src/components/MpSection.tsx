@@ -11,7 +11,7 @@ interface MpSectionProps {
 const backgroundClasses  = `
   z-0 overflow-auto
   bg-mp-section bg-white bg-opacity-10 bg-no-repeat bg-cover 
-  after:backdrop-blur-[1px] after:absolute after:top-0 after:bottom-0 after:w-full 
+  after:backdrop-blur-[5px] after:absolute after:top-0 after:bottom-0 after:w-full 
 `;
 
 export function MpSection( props: PropsWithChildren<MpSectionProps>) {
