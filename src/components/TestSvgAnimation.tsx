@@ -21,7 +21,7 @@ export function TestSvgAnimation( { name, value, imageUrl }: TestProps) {
   return <div className="flex flex-col items-center">
 
   <div title={`${name} - ${value}%`}>
-    <svg width="100%" height="100%" viewBox='0 0 300 300' className="rotate-[270deg]">
+    <svg width="100%" height="100%" viewBox='0 0 300 300' >
       <circle 
         cx="150" cy="150" r="100" 
         fill="transparent"
@@ -35,6 +35,7 @@ export function TestSvgAnimation( { name, value, imageUrl }: TestProps) {
         stroke='white'
         strokeWidth={10} 
         strokeDasharray={`${x} ${MAX - x}`}
+        strokeDashoffset={158}
         fill="transparent"
       />
 
@@ -43,7 +44,7 @@ export function TestSvgAnimation( { name, value, imageUrl }: TestProps) {
           <Image
             src={imageUrl}
             alt="TODO:"
-            className="rotate-90"
+            
             width={100}
             height={100}
           />
