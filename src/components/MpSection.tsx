@@ -25,10 +25,10 @@ export function MpSection( props: PropsWithChildren<MpSectionProps>) {
       { [backgroundClasses] : !noBackGround },
     )}
   >
-    <div className="relative z-10 h-full w-full p-4 text-center">
+    <div className="relative z-10 h-full w-full p-3 text-center">
       {
         title &&
-        <div className="rounded-md p-3 mb-5">
+        <div className="mb-5">
           <MpGradientText>
             <h2 className="text-6xl leading-tight">
               <b>{title}</b>

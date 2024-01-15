@@ -3,7 +3,7 @@ import { MpSection } from "@/components/MpSection";
 export function MyEducation() {
   return <MpSection 
     id="education"
-    title="My Educations"
+    title="Educational Journey"
   >
 
     <ul>
