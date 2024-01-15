@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,12 +20,7 @@ export default function RootLayout({
         {/* The page will be rendered here  */}
         {children}
 
-        {/* A simple script to add a mouse effect */}
-        <Script 
-          id="effects"
-          src='/effects.js' 
-          strategy='lazyOnload' 
-        />
+        
       </body>
     </html>
   )
