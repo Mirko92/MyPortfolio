@@ -28,10 +28,17 @@ const config: Config = {
           "100%": {
             opacity: "1"
           }
+        },
+
+        strokeSpin: {
+          "0%": {
+            strokeDasharray: "0 630"
+          }
         }
       },
       animation: {
-        'fadeIn': "fadeIn .3s linear 2.5s forwards"
+        'fadeIn': "fadeIn .3s linear 2.5s forwards",
+        'strokeSpin': "strokeSpin .5s ease-in-out 350ms",
       }
     },
   },

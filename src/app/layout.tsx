@@ -23,8 +23,8 @@ export default function RootLayout({
 
         {/* A simple script to add a mouse effect */}
         <Script 
-          id="mouse-effect"
-          src='/mouseEffect.js' 
+          id="effects"
+          src='/effects.js' 
           strategy='lazyOnload' 
         />
       </body>

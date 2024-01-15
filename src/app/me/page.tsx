@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main
       className="
-        h-screen overflow-scroll scroll-smooth
+        h-screen overflow-y-auto scroll-smooth
         snap-mandatory snap-y
       "
     >
@@ -17,7 +17,7 @@ export default function Home() {
       <MySkills />
 
       <MyEducation />
-
+ 
       <MyExperiences />
 
       <div className='snap-start h-screen'>

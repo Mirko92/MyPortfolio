@@ -1,24 +1,18 @@
-'use client';
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface MpSkillProps {
-  value: number;
-  name: string;
+  value   : number;
+  name    : string;
   imageUrl: string;
 }
 
 const MAX = 630;
 
 export function MpSkill( { name, value, imageUrl }: MpSkillProps) {
-  const [ x, setX ] = useState(0);
 
-  useEffect(() => {
-    setX(MAX * value / 100);
-  }, [value]);
+  const x = MAX * value / 100;
 
-  return <div className="flex flex-col items-center">
+  return <div className="flex flex-col items-center animate-on-view">
 
   <div title={`${name} - ${value}%`}>
     <svg width="100%" height="100%" viewBox='0 0 300 300' >
@@ -31,7 +25,7 @@ export function MpSkill( { name, value, imageUrl }: MpSkillProps) {
       />
       <circle  
         cx="150" cy="150" r="100" 
-        className="transition-[stroke-dasharray] duration-1000 delay-300"
+        className="animate-strokeSpin"
         stroke='white'
         strokeWidth={10} 
         strokeDasharray={`${x} ${MAX - x}`}
@@ -39,7 +33,7 @@ export function MpSkill( { name, value, imageUrl }: MpSkillProps) {
         fill="transparent"
       />
 
-      <foreignObject x="100" y="100" width="100" height="100">
+      <foreignObject x="100" y="100" width="100" height="100" className="pointer-events-none">
         <div>
           <Image
             src={imageUrl}
