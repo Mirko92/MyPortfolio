@@ -8,8 +8,8 @@
 //   console.debug('Lo schermo non è touch-enabled.');
 
 // }
-function handler({pageX, pageY}) {
-  document.body.style.setProperty('--cursor-x', `${pageX}px`);
-  document.body.style.setProperty('--cursor-y', `${pageY}px`);
-}
-window.addEventListener('mousemove', handler);
+// function handler({pageX, pageY}) {
+//   document.body.style.setProperty('--cursor-x', `${pageX}px`);
+//   document.body.style.setProperty('--cursor-y', `${pageY}px`);
+// }
+// window.addEventListener('mousemove', handler);
