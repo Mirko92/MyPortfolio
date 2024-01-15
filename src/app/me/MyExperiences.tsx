@@ -1,15 +1,17 @@
 import { MpSection } from "@/components/MpSection";
 
 export function MyExperiences() {
-  return <MpSection id="experiences">
-    <h2>My Experiences</h2>
+  return <MpSection 
+    id="experiences"
+    title="My Experiences"
+  >
 
     <ul>
-      <li>Esperienza #1</li>
-      <li>Esperienza #2</li>
-      <li>Esperienza #3</li>
-      <li>Esperienza #4</li>
-      <li>Esperienza #5</li>
+      <li>Item #1</li>
+      <li>Item #2</li>
+      <li>Item #3</li>
+      <li>Item #4</li>
+      <li>Item #5</li>
     </ul>
   </MpSection>
 }
