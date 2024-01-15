@@ -2,12 +2,13 @@ import { PageHeader } from './PageHeader'
 import { MyEducation } from './MyEducation'
 import { MyExperiences } from './MyExperiences'
 import { MySkills } from './MySkills'
+import MyComponent from '@/components/TestIntersectionObserver'
 
 export default function Home() {
   return (
     <main
       className="
-        h-screen overflow-scroll
+        h-screen overflow-scroll scroll-smooth
         snap-mandatory snap-y
       "
     >
@@ -18,6 +19,10 @@ export default function Home() {
       <MyEducation />
 
       <MyExperiences />
+
+      <div className='snap-start h-screen'>
+        <MyComponent />
+      </div>
     </main>
   )
 }

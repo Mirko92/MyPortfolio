@@ -1,85 +1,60 @@
 'use client';
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { LegacyRef, useEffect, useRef } from "react";
 
-type MpSkillProps = {
-  name: string;
+interface MpSkillProps {
   value: number;
-  img: string;
+  name: string;
+  imageUrl: string;
 }
 
-export function MpSkill( props: MpSkillProps) {
-  const { name, value } = props;
+const MAX = 630;
 
-  const percentEl: LegacyRef<HTMLDivElement> = useRef(null);
+export function MpSkill( { name, value, imageUrl }: MpSkillProps) {
+  const [ x, setX ] = useState(0);
 
   useEffect(() => {
-    percentEl.current?.style.setProperty("--num", value.toString());
+    setX(MAX * value / 100);
   }, [value]);
 
-  return <article title={`${name} - ${value}%`}>
-    <div className="box">
-      <div 
-        className="content 
-          relative w-full h-full flex flex-col justify-center items-center
-        "
-      >
-        <div 
-          className="
-            percent
-            relative max-w-[150px] max-h-[150px] h-full w-full
+  return <div className="flex flex-col items-center">
 
-            before:absolute 
-            before:inset-[20px] before:bg-gray-100 before:rounded-full
-          " 
-          ref={percentEl}
-        >
-          <figure className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-1">
-            <Image 
-              src={props.img} 
-              alt={props.name} 
-              width={100} 
-              height={100} 
-              className="w-full"
-            />
-          </figure>
+  <div title={`${name} - ${value}%`}>
+    <svg width="100%" height="100%" viewBox='0 0 300 300' >
+      <circle 
+        cx="150" cy="150" r="100" 
+        fill="transparent"
+        stroke="white"
+        strokeWidth={10}
+        strokeDasharray={"3 8"}
+      />
+      <circle  
+        cx="150" cy="150" r="100" 
+        className="transition-[stroke-dasharray] duration-1000 delay-300"
+        stroke='white'
+        strokeWidth={10} 
+        strokeDasharray={`${x} ${MAX - x}`}
+        strokeDashoffset={158}
+        fill="transparent"
+      />
 
-          <div 
-            className="dot 
-              absolute inset-[5px]
-
-              before:content-[''] 
-              before:absolute 
-              before:top-[-7px] before:left-1/2 
-              -before:translate-x-1/2
-              before:w-[14px] before:h-[14px] 
-              before:bg-white before:rounded-full
-            " 
+      <foreignObject x="100" y="100" width="100" height="100">
+        <div>
+          <Image
+            src={imageUrl}
+            alt="TODO:"
+            
+            width={100}
+            height={100}
           />
-
-          <svg className="relative rotate-[270deg]" width="100%" height="100%" viewBox="0 0 150 150">
-            <circle 
-              className="fill-transparent translate-x-[5px] translate-y-[5px]" 
-              stroke="white" strokeWidth="3" strokeDasharray="1 10"
-              cx="70" cy="70" r="70" 
-            />
-            <circle 
-              className="
-                fill-transparent translate-x-[5px] translate-y-[5px]
-                opacity-0 animate-fadeIn 
-              " 
-              stroke="white" 
-              strokeWidth="3" 
-              strokeDasharray={440} 
-              strokeDashoffset={(440 - (440 * value) / 100)}
-              cx="70" cy="70" r="70" 
-            />
-          </svg>
         </div>
+      </foreignObject>
+    </svg>
 
-        <h5>{name}</h5>
-      </div>
-    </div>
-  </article>
+    <h5 className="relative -top-3">{name}</h5>
+    
+  </div>
+  </div>
+
 }

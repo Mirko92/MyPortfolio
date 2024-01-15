@@ -1,6 +1,5 @@
 import { MpSection } from "@/components/MpSection";
 import { MpSkill } from "@/components/MpSkill";
-import { TestSvgAnimation } from "@/components/TestSvgAnimation";
 
 const MP_SKILLS = [
   { name: "CSS",        value: 90 , img: "/icons/css_icon.svg"        },
@@ -21,14 +20,15 @@ export function MySkills() {
       id="skills"
       title="My Skills"
     >
-
-      
-
       <ul className="grid grid-cols-3 gap-3 max-w-xl m-auto">
         {
           MP_SKILLS.map( (s, i) => {
             return <li key={`${i}_${s.name}`}>
-              <TestSvgAnimation value={s.value} name={s.name} imageUrl={s.img}/>
+              <MpSkill 
+                value={s.value} 
+                name={s.name} 
+                imageUrl={s.img}
+              />
             </li>
           })
         }
