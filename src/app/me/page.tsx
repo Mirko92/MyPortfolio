@@ -22,9 +22,9 @@ export default function Home() {
  
       <MyExperiences />
 
-      <div className='snap-start h-screen'>
+      {/* <div className='snap-start h-screen'>
         <MyComponent />
-      </div>
+      </div> */}
 
       {/* A simple script to add a mouse effect */}
       <Script 

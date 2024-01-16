@@ -25,7 +25,7 @@ export function MpSection( props: PropsWithChildren<MpSectionProps>) {
       { [backgroundClasses] : !noBackGround },
     )}
   >
-    <div className="relative z-10 h-full w-full p-3 text-center">
+    <div className="relative z-10 h-full w-full p-3 text-center flex flex-col flex-nowrap">
       {
         title &&
         <div className="mb-5">
