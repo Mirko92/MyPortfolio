@@ -12,14 +12,14 @@ const MP_SKILLS = [
   { name: "Angular",    value: 85 , img: "/icons/angular_icon.svg"    },
   { name: "React",      value: 80 , img: "/icons/react_icon.svg"      },
   { name: "PowerShell", value: 75 , img: "/icons/powershell_icon.svg" },
-  { name: "Vue",        value: 75 , img: "/icons/vue_icon.svg"        },
+  // { name: "Vue",        value: 75 , img: "/icons/vue_icon.svg"        },
   { name: "C#",         value: 70 , img: "/icons/c_sharp_icon.svg"    },
   { name: "Git",        value: 70 , img: "/icons/git_icon.svg"        },
-  { name: "Java",       value: 55 , img: "/icons/java_icon.svg"      },
-  { name: "DB",         value: 55 , img: "/icons/sql_icon.svg"      },
+  // { name: "Java",       value: 55 , img: "/icons/java_icon.svg"      },
+  // { name: "DB",         value: 55 , img: "/icons/sql_icon.svg"      },
 ];
 
-export function MySkills() {
+export function MainSkills() {
 
   useIsVisible("main .animate-on-view", (item) => {
     if (item.isIntersecting) {
@@ -33,7 +33,7 @@ export function MySkills() {
     <MpSection
       noBackGround
       id="skills"
-      title="My Skills"
+      title="Main Skills"
     >
       <ul className="grid grid-cols-3 gap-3 max-w-xl m-auto animate-on-view">
         {

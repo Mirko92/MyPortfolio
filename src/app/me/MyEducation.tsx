@@ -3,6 +3,11 @@ import { MpGradientText } from "@/components/MpGradientText";
 import { MpSection } from "@/components/MpSection";
 
 const MY_EDUCATION_ACHIEVEMENTS = [
+  {
+    name: "Future",                             
+    title:<>I am<MpGradientText>ALWAYS LEARING</MpGradientText> </>, 
+    dateString: "Until now and beyond!",  
+  },
   { name: "Microsoft AZ-900",                             
     title:<>Microsoft Certified: <MpGradientText>Azure Fundamentals</MpGradientText> </>, 
     dateString: "April, 2023",  

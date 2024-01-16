@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { MpGradientText } from "./MpGradientText";
 
 interface MpEducationProps {
   name: string; 
