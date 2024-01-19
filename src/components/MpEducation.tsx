@@ -1,14 +1,23 @@
 import { ReactElement } from "react";
 
 interface MpEducationProps {
-  name: string; 
   dateString: string; 
   title: string | ReactElement
+  description: string; 
+  url?: string;
 }
 
-export function MpEducation({ name, dateString, title }: MpEducationProps) {
+export function MpEducation({ description, dateString, title, url }: MpEducationProps) {
   return <>
-    <div className="w-9 h-9 -translate-x-9 translate-y-20 rounded-full bg-white"></div>
+    <div 
+      className="
+        w-9 h-9 -translate-x-9 translate-y-20 
+        rounded-full bg-white 
+        grid place-items-center
+      "
+    >
+      { url && <>🔗</>}
+    </div>
 
     <article className="ml-5 text-left">
         <header>
@@ -16,9 +25,7 @@ export function MpEducation({ name, dateString, title }: MpEducationProps) {
           <h3 className="text-3xl"> {title} </h3>
         </header>
 
-        <p>
-          Scroll to know more...
-        </p>
+        <p>{description}</p>
     </article>
   </>
 }
