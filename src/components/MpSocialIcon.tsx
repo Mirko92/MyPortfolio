@@ -1,15 +1,15 @@
 import { PropsWithChildren } from "react";
 
-interface MpIconProps {
+interface MpSocialIconProps {
   title: string;
   url: string;
 }
 
-export function MpIcon(props: PropsWithChildren<MpIconProps>) {
-  const { children, url } = props;
+export function MpSocialIcon(props: PropsWithChildren<MpSocialIconProps>) {
+  const { children, url, title } = props;
 
   return <a  
-    title="Linkedin Icon" 
+    title={title}
     href={url} 
     target="_blank" 
     rel="noopener noreferrer"
