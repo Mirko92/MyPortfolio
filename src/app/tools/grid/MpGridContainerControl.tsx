@@ -2,6 +2,7 @@ import { MpFieldset } from "@/components/MpFieldset";
 import { MpInput } from "@/components/MpInput";
 import { ChangeEvent, useEffect, useState } from "react";
 import { MpGapControl } from "./MpGapControl";
+import { MpRange } from "@/components/MpRange";
 
 export interface MpGridContainerConfig {
   cols: number;
@@ -47,12 +48,10 @@ export function MpGridContainerControl(props: MpGridContainerControlProps) {
   return (
     <MpFieldset legend="Grid Container">
       <>
-        <MpInput
+        <MpRange
           id="cols-count"
           label="Columns count:"
-          type="range"
           min={0}
-          max={30}
           value={cols}
           onChange={onChangeHandler}
         />

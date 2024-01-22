@@ -1,6 +1,6 @@
 'use client';
 
-interface MpInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
+export interface MpInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
   label: string;
 }
 

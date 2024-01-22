@@ -1,10 +1,9 @@
+import { MpButton } from "@/components/MpButton";
 import { MpCssProp } from "@/components/MpCssProp";
+import { MpFieldset } from "@/components/MpFieldset";
 import { useEffect, useState } from "react";
 
 interface MPGapValue {
-  value: number;
-  cssUnit: string;
-  axis: string[];
   formattedValue: string;
 }
 
@@ -13,84 +12,103 @@ interface MpGapControlProps {
 }
 
 /**
- * TODO:i18n
- * Gestisce il controllo del valore del GAP
- * - un input range per determinare il valore
- * - una select per la selezione dell'unità di misura desiderata
- * - checkbox per indicare gli assi su cui andrà applicata
+ * Control the gap value
+ * - provide a MpCssProp for each of columns and rows gap
+ * - their value can be synced, in this case it'll show only one MpCssProp
  */
 export function MpGapControl({ onChange }: MpGapControlProps) {
-  const [x, setX] = useState<number>(2);
-  const [cssUnit, setCssUnit] = useState<string>("rem");
-  const [axis, setAxis] = useState<string[]>(["x", "y"]);
+  // Gap value for columns space
+  const [colValue, setColValue] = useState<number>(2);
+  const [colCssUnit, setColCssUnit] = useState<string>("rem");
 
-  function toggleAxis(value: string) {
-    if (axis.includes(value)) {
-      setAxis(axis.filter((v) => v !== value));
-    } else {
-      setAxis([...axis, value]);
-    }
-  }
+  // Gap value for rows space
+  const [rowValue, setRowValue] = useState<number>(2);
+  const [rowCssUnit, setRowCssUnit] = useState<string>("rem");
 
+  // If true, gap value will be the same for rows and cols
+  const [sync, setSync] = useState<boolean>(true);
+
+  /**
+   * If sync is true, it'll keep synced row and col values
+   */
   useEffect(() => {
-    onChange({
-      value: x,
-      cssUnit,
-      axis,
-      formattedValue:
-        axis.length === 1
-          ? axis.includes("y")
-            ? `0 ${x}${cssUnit}` // Only rows
-            : `${x}${cssUnit} 0` // Olny columns
-          : `${x}${cssUnit} `.repeat(2), // Both
-    });
-  }, [x, cssUnit, axis]);
+    if (sync) {
+      setColValue(rowValue);
+      setColCssUnit(rowCssUnit);
+    }
+  }, [rowValue, rowCssUnit, sync]);
+
+  /**
+   * It'll emit a new event on every change of row or col values
+   */
+  useEffect(() => {
+    // Build formatted value eg: "10rem 1rem"
+    const _rowValue = `${rowValue}${rowCssUnit}`;
+    const _colValue = `${colValue}${colCssUnit}`;
+
+    const formattedValue = sync ? _rowValue : `${_rowValue} ${_colValue}`;
+
+    // Emit change event
+    onChange({ formattedValue });
+  }, [colValue, colCssUnit, rowValue, rowCssUnit]);
 
   return (
-    <div className="border-dashed border">
-      <div className="flex gap-3 items-center">
-        <MpCssProp
-          id="gap-control"
-          label="Gap"
-          value={x}
-          cssUnit={cssUnit}
-          onChange={(v, u) => {
-            setX(v);
-            setCssUnit(u);
-          }}
-        />
+    <MpFieldset legend="Gap">
+      <div className="flex flex-wrap gap-3 items-center">
+        <div className="flex gap-3 items-center">
+          <span
+            className="
+            material-symbols-outlined
+            self-stretch text-5xl
+          "
+          >
+            {sync ? "grid_goldenratio" : "format_line_spacing"}
+          </span>
 
-        <div className="flex flex-col">
-          <span>Apply to</span>
-          <div className="flex gap-1">
-            <label htmlFor="y-axis">
-              <input
-                type="checkbox"
-                name="axis"
-                id="y-axis"
-                className="mr-1"
-                checked={axis.includes("y")}
-                onChange={() => toggleAxis("y")}
-              />
-              Columns
-            </label>
-
-            <label htmlFor="x-axis">
-              <input
-                type="checkbox"
-                name="axis"
-                id="x-axis"
-                className="mr-1"
-                checked={axis.includes("x")}
-                onChange={() => toggleAxis("x")}
-              />
-              Rows
-            </label>
-          </div>
+          <MpCssProp
+            id="gap-control"
+            label={sync ? "Gap" : "Row gap"}
+            value={rowValue}
+            cssUnit={rowCssUnit}
+            onChange={(v, u) => {
+              setRowValue(v);
+              setRowCssUnit(u);
+            }}
+          />
         </div>
-      </div>
 
-      <span className="material-symbols-outlined">horizontal_distribute</span>
-    </div>
+        {!sync && (
+          <div className="flex gap-3 items-center">
+            <span
+              className="
+              material-symbols-outlined
+              self-stretch text-5xl
+            "
+            >
+              format_letter_spacing
+            </span>
+            <MpCssProp
+              id="gap-control"
+              label="Col gap"
+              value={colValue}
+              cssUnit={colCssUnit}
+              onChange={(v, u) => {
+                setColValue(v);
+                setColCssUnit(u);
+              }}
+            />
+          </div>
+        )}
+
+        <MpButton
+          className={!sync ? "-mt-[36px]" : ""}
+          onClick={() => setSync(!sync)}
+        >
+          <span className="material-symbols-outlined text-4xl">
+            {sync ? "link_off" : "link"}
+          </span>
+        </MpButton>
+      </div>
+    </MpFieldset>
   );
 }

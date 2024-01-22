@@ -1,9 +1,9 @@
 "use client";
 
-import { MpInput } from "@/components/MpInput";
+import { MpFieldset } from "@/components/MpFieldset";
+import { MpRange } from "@/components/MpRange";
 import { useEffect, useState } from "react";
 import { MpGridContainerControl } from "./MpGridContainerControl";
-import { MpFieldset } from "@/components/MpFieldset";
 
 const GRID_STYLE_EL = "grid-style-element";
 
@@ -51,10 +51,9 @@ export default function GridTools() {
 
         <MpFieldset legend="Grid Items">
           <div className="flex gap-1">
-            <MpInput
+            <MpRange
               id="items-count"
               label="Items count:"
-              type="range"
               value={count}
               onChange={(e) => setCount(+(e.target as HTMLInputElement).value)}
             />
