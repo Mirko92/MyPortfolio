@@ -34,11 +34,21 @@ const config: Config = {
           "0%": {
             strokeDasharray: "0 630"
           }
+        },
+
+        slideUp: {
+          "0%": {
+            transform: "translateY(100%)"
+          },
+          "100%": {
+            transform: "translateY(0)"
+          }
         }
       },
       animation: {
         'fadeIn': "fadeIn .3s linear 2.5s forwards",
         'strokeSpin': "strokeSpin .5s ease-in-out 350ms",
+        'slideUp': "slideUp 1s ease-in-out",
       }
     },
   },

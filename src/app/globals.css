@@ -79,3 +79,17 @@ body {
   font-weight: 300;
   font-size: 1.5rem;
 }
+
+.mp-sidebar {
+  translate: 0 100%;
+  animation-fill-mode: forwards;
+  transition: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease-in;
+}
+
+.mp-sidebar--open {
+  translate: 0;
+  animation: slideUp 1s ease;
+}
+

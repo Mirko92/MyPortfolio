@@ -26,6 +26,7 @@ export function MpRange(props: MpRangeProps) {
       max={max}
       value={value}
       onMouseUp={() => updateMax()}
+      onTouchEnd={() => updateMax()}
     />
   );
 }

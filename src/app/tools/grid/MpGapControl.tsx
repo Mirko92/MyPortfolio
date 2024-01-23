@@ -26,7 +26,7 @@ export function MpGapControl({ onChange }: MpGapControlProps) {
   const [rowCssUnit, setRowCssUnit] = useState<string>("rem");
 
   // If true, gap value will be the same for rows and cols
-  const [sync, setSync] = useState<boolean>(true);
+  const [sync, setSync] = useState<boolean>(false);
 
   /**
    * If sync is true, it'll keep synced row and col values
@@ -101,7 +101,6 @@ export function MpGapControl({ onChange }: MpGapControlProps) {
         )}
 
         <MpButton
-          className={!sync ? "-mt-[36px]" : ""}
           onClick={() => setSync(!sync)}
         >
           <span className="material-symbols-outlined text-4xl">

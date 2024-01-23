@@ -4,6 +4,7 @@ import { MpFieldset } from "@/components/MpFieldset";
 import { MpRange } from "@/components/MpRange";
 import { useEffect, useState } from "react";
 import { MpGridContainerControl } from "./MpGridContainerControl";
+import { MpSidebar } from "@/components/MpSidebar";
 
 const GRID_STYLE_EL = "grid-style-element";
 
@@ -40,7 +41,11 @@ export default function GridTools() {
 
   return (
     <main className="p-5">
-      <h1 className="text-4xl">Grid configuration</h1>
+      <header>
+        <h1 className="text-4xl">Grid configuration</h1>
+      </header>
+
+      <MpSidebar />
 
       <section className="mb-5 ">
         <MpGridContainerControl
@@ -65,7 +70,7 @@ export default function GridTools() {
         {Array.from({ length: count }).map((_, x) => {
           return (
             <article
-              className="grid-item w-16 h-16 bg-white text-black font-bold"
+              className="grid-item w-full h-full bg-white text-black font-bold"
               key={`item-grid-${x}`}
             >
               {x}

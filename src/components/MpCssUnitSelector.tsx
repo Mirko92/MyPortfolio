@@ -29,10 +29,16 @@ export function MpCssUnitSelector(props: MpCssUnitSelectorProps) {
         value={value}
         {...other}
       >
-        <option value="px">Pixel (px)</option>
-        <option value="%">Percent (%)</option>
-        <option value="fr">Fraction (fr)</option>
-        <option value="rem">Rem (rem)</option>
+        <option value="px">px</option>
+        <option value="%">%</option>
+        <option value="fr">fr</option>
+        <option value="rem">rem</option>
+        <option value="em">em</option>
+        <option value="cm">cm</option>
+        <option value="vh">vh</option>
+        <option value="vw">vw</option>
+        <option value="vmax">vmax</option>
+        <option value="vmin">vmin</option>
       </select>
     </div>
   );

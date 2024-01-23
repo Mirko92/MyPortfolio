@@ -1,23 +1,22 @@
 import { MpFieldset } from "@/components/MpFieldset";
-import { MpInput } from "@/components/MpInput";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MpGapControl } from "./MpGapControl";
-import { MpRange } from "@/components/MpRange";
+import { MpGridTemplate } from "./MpGridTemplate";
 
 export interface MpGridContainerConfig {
-  cols: number;
+  colsTemplate: string;
   gap: string;
 }
 
 function createGridContainerClass(gridConfig: MpGridContainerConfig) {
-  const { cols, gap } = gridConfig;
+  const { colsTemplate, gap } = gridConfig;
 
   return (
     ".grid-container {" +
       "display:grid;" +
       "overflow: auto;" +
       `gap: ${gap};` +
-      `grid-template-columns: 1fr repeat(${cols}, 1fr);` +
+      `grid-template-columns: ${colsTemplate};` +
     "}"
   );
 }
@@ -29,30 +28,25 @@ interface MpGridContainerControlProps {
 export function MpGridContainerControl(props: MpGridContainerControlProps) {
   const { onChange } = props;
 
-  // Grid columns number 
-  const [cols, setCols] = useState<number>(7);
+  // Grid columns template 
+  const [colsTemplate, setColTemplate] = useState<string>("1fr 1fr 1fr");
 
   // GAP value
   const [gap, setGap] = useState<string>("");
 
-  function onChangeHandler(e: ChangeEvent) {
-    const cols = +(e.target as HTMLInputElement).value;
-
-    setCols(cols);
+  function onChangeHandler(colsTemplate: string) {
+    console.log("new template: ", colsTemplate);
+    setColTemplate(colsTemplate);
   }
 
   useEffect(() => {
-    onChange(createGridContainerClass({ cols, gap }));
-  }, [cols, gap]);
+    onChange(createGridContainerClass({ colsTemplate, gap }));
+  }, [colsTemplate, gap]);
 
   return (
     <MpFieldset legend="Grid Container">
       <>
-        <MpRange
-          id="cols-count"
-          label="Columns count:"
-          min={0}
-          value={cols}
+        <MpGridTemplate 
           onChange={onChangeHandler}
         />
 

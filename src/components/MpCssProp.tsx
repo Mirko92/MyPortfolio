@@ -32,6 +32,7 @@ export function MpCssProp(props: MpCssPropProps) {
 
       <MpCssUnitSelector
         label="CSS unit"
+        title="CSS Unit"
         value={unit}
         onInput={(e) => setUnit(e.currentTarget.value)}
       />
