@@ -1,14 +1,24 @@
+const CSS_UNITS = [
+  { unit: "px",   label: "Pixel"},
+  { unit: "%",    label: "Percentage"},
+  { unit: "fr",   label: "Fraction"},
+  { unit: "rem",  label: "Rem"},
+  { unit: "em",   label: "Em"},
+  { unit: "cm",   label: "Centimeters"},
+  { unit: "mm",   label: "Millimeters"},
+  { unit: "in",   label: "Inches"},
+  { unit: "vh",   label: "Viewport Height"},
+  { unit: "vw",   label: "Viewport Width"},
+  { unit: "vmax", label: "Viewport max"},
+  { unit: "vmin", label: "Viewport min"}
+]
+
 interface MpCssUnitSelectorProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
   /**
    *
    */
   label: string;
-
-  /**
-   *
-   */
-  excluded?: string[];
 }
 
 export function MpCssUnitSelector(props: MpCssUnitSelectorProps) {
@@ -29,16 +39,9 @@ export function MpCssUnitSelector(props: MpCssUnitSelectorProps) {
         value={value}
         {...other}
       >
-        <option value="px">px</option>
-        <option value="%">%</option>
-        <option value="fr">fr</option>
-        <option value="rem">rem</option>
-        <option value="em">em</option>
-        <option value="cm">cm</option>
-        <option value="vh">vh</option>
-        <option value="vw">vw</option>
-        <option value="vmax">vmax</option>
-        <option value="vmin">vmin</option>
+        {
+          CSS_UNITS.map( u => <option key={`unit_${u.label}`} value={u.unit}>{u.unit}</option> )
+        }
       </select>
     </div>
   );

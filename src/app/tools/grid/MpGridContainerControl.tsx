@@ -1,4 +1,5 @@
 import { MpFieldset } from "@/components/MpFieldset";
+import { MpCssValue } from "@/model/MpGridModels";
 import { useEffect, useState } from "react";
 import { MpGapControl } from "./MpGapControl";
 import { MpGridTemplate } from "./MpGridTemplate";
@@ -13,10 +14,10 @@ function createGridContainerClass(gridConfig: MpGridContainerConfig) {
 
   return (
     ".grid-container {" +
-      "display:grid;" +
-      "overflow: auto;" +
-      `gap: ${gap};` +
-      `grid-template-columns: ${colsTemplate};` +
+    "display:grid;" +
+    "overflow: auto;" +
+    `gap: ${gap};` +
+    `grid-template-columns: ${colsTemplate};` +
     "}"
   );
 }
@@ -28,30 +29,41 @@ interface MpGridContainerControlProps {
 export function MpGridContainerControl(props: MpGridContainerControlProps) {
   const { onChange } = props;
 
-  // Grid columns template 
-  const [colsTemplate, setColTemplate] = useState<string>("1fr 1fr 1fr");
+  // Grid columns template
+  const [colsTemplate, setColTemplate] = useState<MpCssValue[]>([
+    new MpCssValue(1, "fr"),
+    new MpCssValue(1, "fr"),
+    new MpCssValue(1, "fr"),
+  ]);
 
   // GAP value
   const [gap, setGap] = useState<string>("");
 
-  function onChangeHandler(colsTemplate: string) {
-    console.log("new template: ", colsTemplate);
+  function onChangeHandler(colsTemplate: MpCssValue[]) {
     setColTemplate(colsTemplate);
   }
 
   useEffect(() => {
-    onChange(createGridContainerClass({ colsTemplate, gap }));
+    const _colsTemplate = colsTemplate.map((c) => c.formattedValue).join(" ");
+
+    onChange(
+      createGridContainerClass({
+        colsTemplate: _colsTemplate,
+        gap,
+      })
+    );
   }, [colsTemplate, gap]);
 
   return (
     <MpFieldset legend="Grid Container">
       <>
-        <MpGridTemplate 
+        <MpGridTemplate
+          value={colsTemplate}
           onChange={onChangeHandler}
         />
 
         <MpGapControl
-          onChange={({formattedValue}) => {
+          onChange={({ formattedValue }) => {
             setGap(formattedValue);
           }}
         />

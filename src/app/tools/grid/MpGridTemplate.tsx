@@ -1,24 +1,30 @@
 import { MpButton } from "@/components/MpButton";
 import { MpFieldset } from "@/components/MpFieldset";
 import { MpIcon } from "@/components/MpIcon";
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren, useContext } from "react";
 import { MpGridTemplateElement } from "./MpGridTemplateElement";
+import { MpCssValue } from "@/model/MpGridModels";
+import { SideBarDispatchContext } from "@/components/MpSidebar/sidebarCtx";
+import { MpCssProp } from "@/components/MpCssProp";
+import { MpGridEditTemplateElement } from "./MpGridEditTemplateElement";
 
 interface MpGridTemplateProps {
-  onChange: (template: string) => void;
+  value: MpCssValue[];
+  onChange?: (template: MpCssValue[]) => void;
+
 }
 
 export function MpGridTemplate(props: PropsWithChildren<MpGridTemplateProps>) {
-  const { onChange } = props;
+  const { value, onChange } = props;
 
-  const [els, setEls] = useState<string[]>(["1fr", "1fr", "1fr", "1fr"]);
+  const dispatch = useContext(SideBarDispatchContext);
 
-  useEffect(() => {
-    onChange?.(els.join(" "));
-  }, [els]);
+  function onSave() {
+    console.log("on save clicked");
+  }
 
   return (
-    <MpFieldset legend="Grid template">
+    <MpFieldset legend="Grid column template">
       <div className="flex flex-wrap gap-3">
         <div
           className="
@@ -29,21 +35,29 @@ export function MpGridTemplate(props: PropsWithChildren<MpGridTemplateProps>) {
         >
           <MpButton
             className="w-full h-full"
-            onClick={() => setEls([...els, "1fr"])}
+            onClick={() => onChange?.([...value, new MpCssValue(1, "fr")])}
           >
             <MpIcon>add_circle</MpIcon>
           </MpButton>
         </div>
 
-        {els.map((x, i) => (
+        {value.map((x, i) => (
           <MpGridTemplateElement
             key={`grid-template-element-${i}`}
             onSelect={() => {
-              console.log("On select ");
+              dispatch({ 
+                type: 'displayed', 
+                children: (
+                  <MpGridEditTemplateElement 
+                    value={x} 
+                    onSave={onSave}
+                  /> 
+                )
+              });
             }}
             onRemove={() => {
-              const [_, ..._els] = els;
-              setEls(_els);
+              const [_, ..._els] = value;
+              onChange?.(_els);
             }}
           />
         ))}

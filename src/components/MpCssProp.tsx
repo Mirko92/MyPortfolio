@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MpCssUnitSelector } from "./MpCssUnitSelector";
 import { MpRange } from "@/components/MpRange";
+import { MpIcon } from "./MpIcon";
 
 interface MpCssPropProps {
   id: string;
@@ -27,6 +28,7 @@ export function MpCssProp(props: MpCssPropProps) {
         label={label}
         min={0}
         value={value}
+        step={0.1}
         onChange={(e) => setX(+e.currentTarget.value)}
       ></MpRange>
 
