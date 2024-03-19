@@ -15,3 +15,8 @@ export class MpCssValue {
     return cssValue.formattedValue === this.formattedValue;
   }
 }
+
+export interface MpGridContainerConfig {
+  colsTemplate: string;
+  gap: string;
+}

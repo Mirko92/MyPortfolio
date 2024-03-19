@@ -1,22 +1,15 @@
 import { MpButton } from "@/components/MpButton";
 import { MpCssProp } from "@/components/MpCssProp";
 import { MpFieldset } from "@/components/MpFieldset";
+import { useGridStore } from "@/store/GridStore";
 import { useEffect, useState } from "react";
-
-interface MPGapValue {
-  formattedValue: string;
-}
-
-interface MpGapControlProps {
-  onChange: (event: MPGapValue) => void;
-}
 
 /**
  * Control the gap value
  * - provide a MpCssProp for each of columns and rows gap
  * - their value can be synced, in this case it'll show only one MpCssProp
  */
-export function MpGapControl({ onChange }: MpGapControlProps) {
+export function MpGapControl() {
   // Gap value for columns space
   const [colValue, setColValue] = useState<number>(2);
   const [colCssUnit, setColCssUnit] = useState<string>("rem");
@@ -28,6 +21,7 @@ export function MpGapControl({ onChange }: MpGapControlProps) {
   // If true, gap value will be the same for rows and cols
   const [sync, setSync] = useState<boolean>(false);
 
+  const onChange = useGridStore(s => s.setGap);
   /**
    * If sync is true, it'll keep synced row and col values
    */
@@ -49,7 +43,7 @@ export function MpGapControl({ onChange }: MpGapControlProps) {
     const formattedValue = sync ? _rowValue : `${_rowValue} ${_colValue}`;
 
     // Emit change event
-    onChange({ formattedValue });
+    onChange(formattedValue);
   }, [colValue, colCssUnit, rowValue, rowCssUnit]);
 
   return (

@@ -9,7 +9,6 @@ export function MpRange(props: MpRangeProps) {
   const [max, setMax] = useState<number>(30);
 
   function updateMax() {
-    console.log("update max");
     if (value || value === 0) {
       if (+value >= max) {
         setMax(Math.round(+value * 1.5));
